@@ -1,4 +1,5 @@
 import { computed, Ref } from 'vue-demi'
+import { View } from 'vega'
 import { EmbedOptions, VisualizationSpec } from 'vega-embed'
 import {
   hasChanged,
@@ -7,7 +8,6 @@ import {
   RenderFunction,
   SignalListeners,
   updateMultipleDatasetsInView,
-  VegaView,
   watchOn
 } from './utils'
 
@@ -19,7 +19,7 @@ export function useVegaSpecUpdater(
   onSpecChange(rerender)
 }
 
-type OptionsViewProperty = keyof VegaView & keyof EmbedOptions
+type OptionsViewProperty = keyof View & keyof EmbedOptions
 export function useVegaOptionsUpdater(
   options: Ref<EmbedOptions>,
   rerender: RenderFunction,

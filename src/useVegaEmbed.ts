@@ -1,5 +1,5 @@
-import vegaEmbed, { VisualizationSpec, Result, EmbedOptions } from 'vega-embed'
 import { computed, Ref, ref } from 'vue-demi'
+import vegaEmbed, { VisualizationSpec, Result, EmbedOptions } from 'vega-embed'
 
 import { ModifyFunction } from './utils'
 

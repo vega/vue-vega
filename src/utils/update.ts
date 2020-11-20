@@ -1,5 +1,6 @@
 import { vega } from 'vega-embed'
-import { PlainObject, VegaView } from './typings'
+import { View } from 'vega'
+import { PlainObject } from './typings'
 
 export function isFunction(
   functionToCheck: unknown
@@ -13,7 +14,7 @@ export function isFunction(
 }
 
 export function updateSingleDatasetInView(
-  view: VegaView,
+  view: View,
   name: string,
   value: unknown
 ) {
@@ -32,10 +33,7 @@ export function updateSingleDatasetInView(
   }
 }
 
-export function updateMultipleDatasetsInView(
-  view: VegaView,
-  data: PlainObject
-) {
+export function updateMultipleDatasetsInView(view: View, data: PlainObject) {
   Object.keys(data).forEach(name => {
     updateSingleDatasetInView(view, name, data[name])
   })

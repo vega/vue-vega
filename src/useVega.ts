@@ -1,29 +1,24 @@
 import { ref } from 'vue-demi'
+import { View } from 'vega'
 import { EmbedOptions, VisualizationSpec } from 'vega-embed'
 import { useVegaEmbed } from './useVegaEmbed'
 import { useVegaUpdater } from './useVegaUpdaters'
-import {
-  MaybeRef,
-  PlainObject,
-  RefElement,
-  SignalListeners,
-  VegaView
-} from './utils'
+import { MaybeRef, PlainObject, RefElement, SignalListeners } from './utils'
 
-export type VegaConfig = {
+export type VueVegaConfig = {
   el: RefElement
   spec: MaybeRef<VisualizationSpec>
   data?: MaybeRef<PlainObject>
   embedOptions?: MaybeRef<EmbedOptions>
   signals?: MaybeRef<SignalListeners>
   onError?: (error: Error) => void
-  onNewView?: (view: VegaView) => void
+  onNewView?: (view: View) => void
 }
 
 /**
  * Normalizes all MaybeRefs to refs.
  */
-function configToRefs(config: VegaConfig) {
+function configToRefs(config: VueVegaConfig) {
   return {
     ...config,
     el: ref(config.el),
@@ -34,7 +29,7 @@ function configToRefs(config: VegaConfig) {
   }
 }
 
-export function useVega(config: VegaConfig) {
+export function useVega(config: VueVegaConfig) {
   const { el, spec, data, embedOptions, signals, ...options } = configToRefs(
     config
   )
