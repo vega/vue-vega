@@ -3,7 +3,7 @@ import { View } from 'vega'
 import { EmbedOptions, VisualizationSpec } from 'vega-embed'
 import { useVegaEmbed } from './useVegaEmbed'
 import { useVegaUpdater } from './useVegaUpdaters'
-import { MaybeRef, PlainObject, RefElement, SignalListeners } from './utils'
+import { MaybeRef, PlainObject, RefElement, SignalListeners } from './utils/index'
 
 export type VueVegaConfig = {
   el: RefElement
@@ -33,7 +33,7 @@ export function useVega(config: VueVegaConfig) {
   const { el, spec, data, embedOptions, signals, ...options } = configToRefs(
     config
   )
-  const { embed, ...vegaEmbed } = useVegaEmbed(el, spec, embedOptions)
+  const { embed, ...vegaEmbed } = useVegaEmbed(el, spec as any, embedOptions)
   const loading = ref(false)
 
   // Wrapper around the embed function to add support for function callbacks and
@@ -45,7 +45,8 @@ export function useVega(config: VueVegaConfig) {
       if (output?.view != null) options?.onNewView?.(output.view)
       return output
     } catch (error) {
-      options?.onError?.(error)
+      console.log("error is ", error);
+      options?.onError?.(error as any)
       return
     } finally {
       loading.value = false
@@ -55,7 +56,7 @@ export function useVega(config: VueVegaConfig) {
   const { modify } = vegaEmbed
   // Watchers that update vega in the most optimal way by either modifying or
   // re-rendering
-  useVegaUpdater(spec, embedOptions, signals, data, render, modify)
+  useVegaUpdater(spec as any, embedOptions, signals, data, render, modify)
 
   return { render, loading, ...vegaEmbed }
 }
