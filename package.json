@@ -17,7 +17,9 @@
   "types": "dist/types/src/entry.esm.d.ts",
   "files": [
     "dist/*",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "src/**/*.ts",
+    "src/**/*.js"
   ],
   "sideEffects": false,
   "scripts": {
