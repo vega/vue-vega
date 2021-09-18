@@ -12,7 +12,7 @@ export function useVegaEmbed(
   el: Ref<HTMLElement | null | undefined>,
   spec: Ref<VisualizationSpec>,
   options?: Ref<EmbedOptions>
-) {
+) : any { // workaround "The inferred type of this node exceeds the maximum length the compiler will serialize. An explicit type annotation is needed."
   const result = ref<Result | null>(null)
   const view = computed(() => result.value?.view ?? null)
 

@@ -7,6 +7,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import babel from '@rollup/plugin-babel';
+import json from "@rollup/plugin-json";
 import PostCSS from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
 import ttypescript from 'ttypescript';
@@ -59,6 +60,7 @@ const baseConfig = {
       // Process all `<style>` blocks except `<style module>`.
       PostCSS({ include: /(?<!&module=.*)\.css$/ }),
       commonjs(),
+      json()
     ],
     babel: {
       exclude: 'node_modules/**',
