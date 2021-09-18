@@ -4,14 +4,12 @@ import path from 'path';
 import vue from 'rollup-plugin-vue';
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import babel from '@rollup/plugin-babel';
 import json from "@rollup/plugin-json";
+import typescript from '@rollup/plugin-typescript';
 import PostCSS from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
-import ttypescript from 'ttypescript';
-import typescript from 'rollup-plugin-typescript2';
 import minimist from 'minimist';
 
 // Get browserslist config and remove ie from es build targets
@@ -47,9 +45,6 @@ const baseConfig = {
     vue: {
     },
     postVue: [
-      resolve({
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
-      }),
       // Process only `<style module>` blocks.
       PostCSS({
         modules: {
@@ -106,8 +101,6 @@ if (!argv.format || argv.format === 'es') {
       // Only use typescript for declarations - babel will
       // do actual js transformations
       typescript({
-        typescript: ttypescript,
-        useTsconfigDeclarationDir: true,
         emitDeclarationOnly: true,
       }),
       babel({
@@ -125,57 +118,6 @@ if (!argv.format || argv.format === 'es') {
     ],
   };
   buildFormats.push(esConfig);
-}
-
-if (!argv.format || argv.format === 'cjs') {
-  const umdConfig = {
-    ...baseConfig,
-    external,
-    output: {
-      compact: true,
-      file: 'dist/vue-vega.ssr.js',
-      format: 'cjs',
-      name: 'VueVega',
-      exports: 'auto',
-      globals,
-    },
-    plugins: [
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
-      babel(baseConfig.plugins.babel),
-    ],
-  };
-  buildFormats.push(umdConfig);
-}
-
-if (!argv.format || argv.format === 'iife') {
-  const unpkgConfig = {
-    ...baseConfig,
-    external,
-    output: {
-      compact: true,
-      file: 'dist/vue-vega.min.js',
-      format: 'iife',
-      name: 'VueVega',
-      exports: 'auto',
-      globals,
-    },
-    plugins: [
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
-      babel(baseConfig.plugins.babel),
-      terser({
-        output: {
-          ecma: 5,
-        },
-      }),
-    ],
-  };
-  buildFormats.push(unpkgConfig);
 }
 
 // Export config
