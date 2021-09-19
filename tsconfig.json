@@ -1,10 +1,11 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "module": "es6",
+        "target": "es2015",
+        "module": "es2015",
         "strict": true,
         "declaration": true,
-        "declarationDir": "./",
+        "declarationMap": true,
+        "declarationDir": "dist/types",
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "importHelpers": true,
@@ -12,6 +13,7 @@
         "experimentalDecorators": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
+        "downlevelIteration": true,
         "sourceMap": true,
         "baseUrl": ".",
         "newLine": "lf",

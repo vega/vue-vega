@@ -3,7 +3,7 @@ import path from 'path';
 import vue from 'rollup-plugin-vue';
 import alias from '@rollup/plugin-alias';
 import json from "@rollup/plugin-json";
-import typescript from '@rollup/plugin-typescript';
+import ts from "rollup-plugin-ts";
 
 const projectRoot = path.resolve(__dirname, '..');
 
@@ -20,10 +20,7 @@ const commonPlugins = [
       },
     ],
   }),
-  typescript({
-    experimentalDecorators: true,
-    tsconfig: './tsconfig.json',
-    module: 'es2015'
+  ts({
   }),
   json()
 ];

@@ -25,7 +25,7 @@ export default defineComponent({
       data: props.data,
     };
 
-    const { render, loading } = useVega(config);
+    const { render, loading } = useVega(config as any);
     onMounted(() => {
       render();
     });
