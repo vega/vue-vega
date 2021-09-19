@@ -1,7 +1,7 @@
 import { computed, Ref, ref } from 'vue-demi'
 import vegaEmbed, { VisualizationSpec, Result, EmbedOptions } from 'vega-embed'
 
-import { ModifyFunction } from './utils'
+import { ModifyFunction } from './utils/index'
 
 /**
  * A low level hook that simply wraps the vega embed.
@@ -12,7 +12,7 @@ export function useVegaEmbed(
   el: Ref<HTMLElement | null | undefined>,
   spec: Ref<VisualizationSpec>,
   options?: Ref<EmbedOptions>
-) {
+) : any { // workaround "The inferred type of this node exceeds the maximum length the compiler will serialize. An explicit type annotation is needed."
   const result = ref<Result | null>(null)
   const view = computed(() => result.value?.view ?? null)
 
@@ -20,7 +20,11 @@ export function useVegaEmbed(
     result.value != null && result.value.finalize()
 
   const embed = async () => {
-    if (el.value == null) return
+    console.log("embed called")
+    if (el.value == null) {
+      console.log("its null")
+      return
+    }
     const output = await vegaEmbed(el.value, spec.value, options?.value)
     result.value = output
     return output
