@@ -22,6 +22,7 @@ const commonPlugins = [
   }),
   typescript({
     experimentalDecorators: true,
+    tsconfig: './tsconfig.json',
     module: 'es2015'
   }),
   json()

@@ -10,11 +10,10 @@
     "url": "https://github.com/vega/vue-vega/issues"
   },
   "homepage": "https://github.com/vega/vue-vega#readme",
-  "main": "dist/vue-vega.ssr.js",
-  "browser": "dist/vue-vega.esm.js",
-  "module": "dist/vue-vega.esm.js",
-  "unpkg": "dist/vue-vega.min.js",
-  "types": "dist/types/src/entry.esm.d.ts",
+  "main": "dist/library.ssr.js",
+  "browser": "dist/library.esm.js",
+  "module": "dist/library.esm.js",
+  "types": "dist/src/entry.d.ts",
   "files": [
     "dist/*",
     "src/**/*.vue",
