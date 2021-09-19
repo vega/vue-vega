@@ -2,7 +2,7 @@
 import { defineComponent } from 'vue';
 
 // Uncomment import and local "components" registration if library is not registered globally.
-import { VueVega } from '@/entry.esm';
+import { VueVega } from '@/entry';
 
 export default defineComponent({
   name: 'ServeDev',
