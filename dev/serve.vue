@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue-demi';
 
 // Uncomment import and local "components" registration if library is not registered globally.
 import { VueVega } from '@/entry';

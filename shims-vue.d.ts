@@ -1,6 +1,6 @@
 declare module '*.vue' {
-  import { DefineComponent } from 'vue';
+  import { defineComponent } from 'vue-demi';
 
-  const Component: DefineComponent<{}, {}, any>;
-  export default Component;
+  const component: ReturnType<typeof defineComponent>;
+  export default component;
 }
