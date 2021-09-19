@@ -13,7 +13,7 @@
   "main": "dist/library.ssr.js",
   "browser": "dist/library.esm.js",
   "module": "dist/library.esm.js",
-  "types": "dist/library.esm.d.ts",
+  "types": "dist/types/library.esm.d.ts",
   "files": [
     "dist/*",
     "src/**/*.vue",
