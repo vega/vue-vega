@@ -7,3 +7,4 @@ export type ModifyFunction = (modify: (view: View) => void) => void
 export type PlainObject = Record<string, unknown>
 export type MaybeRef<T> = Ref<T> | T
 export type RefElement = HTMLElement | Ref<HTMLElement | undefined | null>
+export type VegaView = any   // FIXME
