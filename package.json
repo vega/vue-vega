@@ -1,0 +1,13 @@
+{
+  "name": "vue-vega",
+  "version": "0.0.1",
+  "description": "Vue component for Vega and Vega-Lite",
+  "license": "BSD",
+  "main": "src/index.ts",
+  "dependencies": {
+    "vega": "^5.22.1",
+    "vega-embed": "^6.21.3",
+    "vue": "^3.2.47",
+    "vue-demi": "^0.13.11"
+  }
+}
